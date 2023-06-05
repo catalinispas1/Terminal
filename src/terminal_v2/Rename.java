@@ -12,6 +12,22 @@ public class Rename extends Graph{
 	void rename() {
 		boolean folderFound = false;
 		for(int i = 0; i < nodes.size(); i++) {
+			if(matrix[currentFolder][i] == 1) {
+				if(nodes.get(i).getFolder() != null) {
+					if(nodes.get(i).getFolder().equals(newName)) {
+						System.out.println("This file have already exist in the current path");
+						return;
+					}
+				} else {
+					if(String.valueOf(nodes.get(i).getFile()).equals(newName)) {
+						System.out.println("This file have already exist in the current path");
+						return;
+					}
+				}
+			}
+		}
+		
+		for(int i = 0; i < nodes.size(); i++) {
 			if(nodes.get(i).getFolder() != null) {
 				if(matrix[currentFolder][i] == 1 && nodes.get(i).getFolder().equals(oldName)) {
 					nodes.get(i).setFolder(newName);

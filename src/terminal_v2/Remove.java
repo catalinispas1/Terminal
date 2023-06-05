@@ -13,20 +13,22 @@ public class Remove extends Graph{
 	void remove() {
 		for(int i = 0; i < nodes.size(); i++) {
 			if(matrix[currentFolder][i] == 1 ) {
-				try {
+				if(nodes.get(i).getFolder() != null) {
 					if(nodes.get(i).getFolder().equals(removeFile)) {
 						searchFolderToDelete(i);
 						if(deleteAppeals > 1) System.out.println("The file with all the components has been deleted");
 						else System.out.println("The file has been deleted");
 						folderFound = true;
 						break;
-					} else if(String.valueOf(nodes.get(i).getFile()).equals(removeFile)){
+					}
+				} else {
+					if(String.valueOf(nodes.get(i).getFile()).equals(removeFile)){
 						delete(i);
+						System.out.println("The file has been deleted");
 						folderFound = true;
 						break;
 					}
 				}
-				catch(NullPointerException e) {}
 			}
 		}
 		if(!folderFound) {
@@ -62,7 +64,6 @@ public class Remove extends Graph{
 		size--;
 		folderNetwork--;
 		nodes.remove(index);
-		printMatrix();
 	}
 	
 	private void shrink() {

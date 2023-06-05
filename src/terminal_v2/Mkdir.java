@@ -13,7 +13,6 @@ public class Mkdir extends Graph {
 		addNode(new Node(folderName));
 		folderNetwork++;
 		addEdge(currentFolder, folderNetwork);
-		printMatrix();
 	}
 	
 	public String toString() {
